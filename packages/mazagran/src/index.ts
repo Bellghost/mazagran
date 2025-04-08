@@ -289,7 +289,7 @@ class Mazagran {
     }
     const maxLength = this.config.LIMIT_NUM_SAME_CHAR - 1;
     // const lower = password.toLowerCase().split("");
-    const pas = password.toLowerCase().split("");
+    const pas = password.split("");
     let sameLength = 0;
     let nowChar = "";
     pas.some((char) => {
