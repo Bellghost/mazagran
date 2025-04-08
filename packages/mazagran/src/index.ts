@@ -288,6 +288,36 @@ class Mazagran {
       return true;
     }
     const maxLength = this.config.LIMIT_NUM_SAME_CHAR - 1;
+    // const lower = password.toLowerCase().split("");
+    const pas = password.toLowerCase().split("");
+    let sameLength = 0;
+    let nowChar = "";
+    pas.some((char) => {
+      if (nowChar === char) {
+        sameLength++;
+        if (sameLength === maxLength) {
+          return true;
+        }
+      } else {
+        nowChar = char;
+        sameLength = 0;
+      }
+    });
+    return sameLength < maxLength;
+  }
+  /**
+   * 评估aaaa,1111这样的相同连续字符
+   *
+   * @private
+   * @param {string} password 密码字符串
+   * @return {*}  {boolean}
+   * @memberof CheckPWD
+   */
+  private checkSequentialSameCharsNotSensitive(password: string): boolean {
+    if (!this.config.CHECK_SEQUENTIAL_CHAR_SAME) {
+      return true;
+    }
+    const maxLength = this.config.LIMIT_NUM_SAME_CHAR - 1;
     const lower = password.toLowerCase().split("");
     let sameLength = 0;
     let nowChar = "";
